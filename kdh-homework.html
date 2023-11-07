@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김동휘 데이터 테이블 출력 숙제</title>
+    <style>
+        table {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        .list{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h2>김동휘 데이터 테이블 출력 숙제</h2>
+
+        
+        <script>
+            fetch('https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0')
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    
+                    const dataseries = data.dataseries;
+                    console.log(data.dataseries)
+                    document.write('<table border="1">')
+                    document.write('<tr style="background-color: yellow;"><th>데이터 목록</th><th>timepoint</th><th>cloudcover</th><th>seeing</th><th>transparency</th><th>lifted_index</th><th>rh2m</th><th>temp2m</th></tr>')
+
+                    for(let i=0; i<dataseries.length; i++){
+                        document.write("<tr>")
+                        document.write('<td>' + (i + 1) + "번" + "</td>");
+                        document.write("<td>" + dataseries[i].timepoint+"</td>")
+                        document.write("<td>" + dataseries[i].cloudcover + "</td>")
+                        document.write("<td>" + dataseries[i].seeing + "</td>")
+                        document.write("<td>" + dataseries[i].transparency + "</td>")
+                        document.write("<td>" + dataseries[i].lifted_index + "</td>")
+                        document.write("<td>" + dataseries[i].rh2m + "</td>")
+                        document.write("<td>" + dataseries[i].temp2m + "</td>")
+                        document.write("</tr>")
+                    }
+                    document.write("</table>")
+                    
+                });
+                
+        </script>
+    </table>
+</body>
+</html>
